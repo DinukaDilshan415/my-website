@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Digital Profile</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-color: #f3f4f6;
+            --border-color: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid white;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        .name {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .title {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .bio {
+            font-size: 16px;
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .info-group {
+            margin-bottom: 20px;
+        }
+
+        .info-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 16px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .info-value:hover {
+            background-color: var(--bg-color);
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            padding: 12px;
+            border-radius: 8px;
+            background: white;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            gap: 8px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .action-btn {
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .primary-btn {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .secondary-btn {
+            background: var(--bg-color);
+            color: var(--text-primary);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .education, .experience {
+            margin-bottom: 15px;
+        }
+
+        .edu-item, .exp-item {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            border-left: 2px solid var(--accent-color);
+        }
+
+        .date {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .institution, .company {
+            font-weight: bold;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #323232;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .name {
+                font-size: 24px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .social-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <div class="header">
+            <img src="/api/placeholder/150/150" alt="John Doe" class="profile-img">
+            <div class="name">John Doe</div>
+            <div class="title">Senior Software Developer</div>
+            <div class="bio">Passionate software developer with 8+ years of experience in full-stack development. Specialized in creating scalable web applications and mentoring development teams.</div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">Contact Information</h2>
+                <div class="info-group">
+                    <div class="info-label">Phone</div>
+                    <div class="info-value" onclick="copyToClipboard('+1 (555) 123-4567')">
+                        📱 +1 (555) 123-4567
+                    </div>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Email</div>
+                    <div class="info-value" onclick="copyToClipboard('john.doe@example.com')">
+                        📧 john.doe@example.com
+                    </div>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Website</div>
+                    <div class="info-value" onclick="copyToClipboard('www.johndoe.dev')">
+                        🌐 www.johndoe.dev
+                    </div>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Location</div>
+                    <div class="info-value" onclick="copyToClipboard('San Francisco, CA')">
+                        📍 San Francisco, CA
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="exp-item">
+                    <div class="date">2020 - Present</div>
+                    <div class="company">Tech Company Inc.</div>
+                    <div>Senior Software Developer</div>
+                </div>
+                <div class="exp-item">
+                    <div class="date">2018 - 2020</div>
+                    <div class="company">Innovation Labs</div>
+                    <div>Software Developer</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Education</h2>
+                <div class="edu-item">
+                    <div class="date">2014 - 2018</div>
+                    <div class="institution">University of Technology</div>
+                    <div>Bachelor of Science in Computer Science</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Connect With Me</h2>
+                <div class="social-links">
+                    <a href="#" class="social-btn">👥 LinkedIn</a>
+                    <a href="#" class="social-btn">𝕏 Twitter</a>
+                    <a href="#" class="social-btn">📸 Instagram</a>
+                    <a href="#" class="social-btn">💻 GitHub</a>
+                    <a href="#" class="social-btn">📝 Medium</a>
+                    <a href="#" class="social-btn">▶️ YouTube</a>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="action-btn primary-btn" onclick="downloadVCard()">
+                    ⬇️ Save Contact
+                </button>
+                <button class="action-btn secondary-btn" onclick="shareProfile()">
+                    📤 Share Profile
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Copied to clipboard');
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+
+        function downloadVCard() {
+            const vCardData = `BEGIN:VCARD
+VERSION:3.0
+FN:John Doe
+TITLE:Senior Software Developer
+TEL:+1 (555) 123-4567
+EMAIL:john.doe@example.com
+URL:www.johndoe.dev
+ADR:;;San Francisco, CA;;;;
+ORG:Tech Company Inc.
+NOTE:Passionate software developer with 8+ years of experience
+END:VCARD`;
+
+            const blob = new Blob([vCardData], { type: 'text/vcard' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'john_doe.vcf';
+            a.click();
+            window.URL.revokeObjectURL(url);
+            showToast('Contact saved');
+        }
+
+        function shareProfile() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'John Doe - Digital Profile',
+                    text: 'Check out my professional profile',
+                    url: window.location.href
+                }).then(() => {
+                    showToast('Shared successfully');
+                }).catch(err => {
+                    console.error('Share failed:', err);
+                });
+            } else {
+                showToast('Share not supported on this device');
+            }
+        }
+    </script>
+</body>
+</html>
