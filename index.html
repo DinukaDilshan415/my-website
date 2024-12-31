@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/141296369?s=400&u=dc00930b5ad1fac3a16ae9095c97aced5e19782e&v=4">
-    <title>John Doe - Digital Profile</title>
+    <title>Dinuka Dilshan - Digital Profile</title>
     <style>
         :root {
             --primary-color: #2563eb;
@@ -36,8 +36,9 @@
             background: white;
             border-radius: 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            width: 100%;
+            width: 95%;
             max-width: 600px;
+            margin: 20px auto;
             overflow: hidden;
         }
 
@@ -218,28 +219,135 @@
 
         .toast.show {
             opacity: 1;
+        }        /* Desktop/PC screens (default) */
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 95%;
+            max-width: 1200px;  /* Increased from 600px for wider PC view */
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        
+        /* Layout improvements for wider screens */
+        @media (min-width: 1024px) {
+            .content {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 30px;
+                padding: 40px;
+            }
+        
+            .section:first-child {
+                grid-column: 2;
+                grid-row: 1 / span 3;
+            }
+        
+            .social-links {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+        }
+        
+        /* Tablet screens */
+        @media (max-width: 1023px) {
+            .profile-card {
+                max-width: 800px;
+            }
+        
+            .content {
+                padding: 30px;
+            }
+        }
+        
+        /* Mobile screens */
+        @media (max-width: 480px) {
+            .profile-card {
+                width: 98%;
+                margin: 10px auto;
+            }
+        
+            .content {
+                padding: 15px;
+            }
+        
+            .header {
+                padding: 20px 15px;
+            }
+        
+            .social-links {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            .social-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
             .header {
-                padding: 30px 20px;
+                padding: 20px 15px;
             }
             
             .profile-img {
-                width: 120px;
-                height: 120px;
+                width: 100px;
+                height: 100px;
             }
-
+            
             .name {
-                font-size: 24px;
+                font-size: 22px;
             }
-
-            .content {
-                padding: 20px;
+            
+            .title {
+                font-size: 16px;
             }
-
+            
+            .bio {
+                font-size: 14px;
+            }
+            
+            .section-title {
+                font-size: 18px;
+            }
+            
+            .info-value {
+                font-size: 14px;
+            }
+            
             .social-links {
                 grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .action-btn {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .content {
+                padding: 15px;
+            }
+            
+            .profile-img {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .name {
+                font-size: 20px;
             }
         }
     </style>
